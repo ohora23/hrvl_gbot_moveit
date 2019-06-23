@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find hrvl_gbot_moveit)/config/ros_controllers.yaml" command="load"/>
+
+  <!-- Load the controllers -->
+  <node name="ros_control_controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/hrvl_gbot" args="arm_long_controller arm_short_controller arm_long_with_torso_controller pan_tilt_controller pan_tilt_kinect_controller gripper_controller "/>
+
+
+  <!-- Convert joint states to TF transforms for rviz, etc -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+    respawn="false" output="screen">
+    <remap from="/joint_states" to="/hrvl_gbot/joint_states" />
+  </node>
+
+</launch>

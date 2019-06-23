@@ -1,0 +1,40 @@
+controller_list:
+  - name: fake_arm_long_controller
+    joints:
+      - arm_mid_motor_joint_z
+      - arm_shoulder_joint_y
+      - arm_shoulder_joint_x
+      - arm_shoulder_joint_z
+      - arm_lower_joint_x
+      - wrist_roll_joint
+      - wrist_pitch_joint
+  - name: fake_arm_short_controller
+    joints:
+      - arm_shoulder_joint_y
+      - arm_shoulder_joint_x
+      - arm_shoulder_joint_z
+      - arm_lower_joint_x
+      - wrist_roll_joint
+      - wrist_pitch_joint
+  - name: fake_arm_long_with_torso_controller
+    joints:
+      - torso_joint_x
+      - torso_joint_y
+      - arm_mid_motor_joint_z
+      - arm_shoulder_joint_y
+      - arm_shoulder_joint_x
+      - arm_shoulder_joint_z
+      - arm_lower_joint_x
+      - wrist_roll_joint
+      - wrist_pitch_joint
+  - name: fake_pan_tilt_controller
+    joints:
+      - neck_joint_z
+      - neck_joint_y
+  - name: fake_pan_tilt_kinect_controller
+    joints:
+      - neck_joint_z
+      - neck_joint_y
+  - name: fake_gripper_controller
+    joints:
+      - gripper_joint

@@ -1,0 +1,62 @@
+hrvl_gbot:
+# Publish all joint states
+# Creates the /joint_states topic necessary in ROS
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+  controller_list:
+    - name: arm_long_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        - arm_mid_motor_joint_z
+        - arm_shoulder_joint_y
+        - arm_shoulder_joint_x
+        - arm_shoulder_joint_z
+        - arm_lower_joint_x
+        - wrist_roll_joint
+        - wrist_pitch_joint
+    - name: arm_short_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        - arm_shoulder_joint_y
+        - arm_shoulder_joint_x
+        - arm_shoulder_joint_z
+        - arm_lower_joint_x
+        - wrist_roll_joint
+        - wrist_pitch_joint
+    - name: arm_long_with_torso_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        - torso_joint_x
+        - torso_joint_y
+        - arm_mid_motor_joint_z
+        - arm_shoulder_joint_y
+        - arm_shoulder_joint_x
+        - arm_shoulder_joint_z
+        - arm_lower_joint_x
+        - wrist_roll_joint
+        - wrist_pitch_joint
+    - name: pan_tilt_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        []
+    - name: pan_tilt_kinect_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        []
+    - name: gripper_controller
+      action_ns: follow_joint_trajectory
+      default: True
+      type: FollowJointTrajectory
+      joints:
+        []

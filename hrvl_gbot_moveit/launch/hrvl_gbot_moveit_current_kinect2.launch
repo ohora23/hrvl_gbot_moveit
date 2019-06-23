@@ -1,0 +1,58 @@
+<launch>
+  <arg name="robot_name"             default="hrvl_gbot"/>
+  <arg name="sample_duration"        default="0.010"/>
+  <arg name="debug"                  default="false" />
+
+  <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
+  <include file="$(find hrvl_gbot_moveit)/launch/planning_context.launch">
+    <arg name="load_robot_description" value="true"/>
+  </include>
+
+ <!-- If needed, broadcast static tf for robot root -->
+    <node pkg="tf" type="static_transform_publisher" name="virtual_joint_broadcaster_0" args="0 0 0 0 0 0 odom base_footprint 100" />
+ 
+  <!-- We do not have a robot connected, so publish fake joint states -->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="/use_gui" value="false"/>
+    <rosparam param="source_list" subst_value="true">["$(arg robot_name)/joint_states"]</rosparam>
+  </node>
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
+
+ <!-- Run the main MoveIt! executable without trajectory execution (we do not have controllers configured by default) -->
+  <include file="$(find hrvl_gbot_moveit)/launch/move_group.launch">
+    <arg name="allow_trajectory_execution" value="false"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="false"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+  <!-- Run Rviz and load the default config to see the state of the move_group node -->
+  <include file="$(find hrvl_gbot_moveit)/launch/moveit_rviz.launch">
+    <arg name="config" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+  </include>
+
+
+  <!-- USE CPU for depth processing -->
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch">
+    <arg name="publish_tf" value="true"/>
+    <arg name="depth_method" value="opengl"/>
+    <arg name="depth_device" value="1"/>
+    <arg name="reg_method" value="opencl"/>
+    <arg name="reg_device" value="1"/>
+    <arg name="fps_limit" value="-1"/>
+    <arg name="max_depth" value="5"/>
+    <arg name="min_depth" value="0.5"/>
+    <arg name="bilateral_filter" value="false"/>
+    <arg name="edge_aware_filter" value="false"/>
+  </include> 
+
+  <!-- <node pkg="tf" type="static_transform_publisher" name="kinect2_link_broadcaster" args="0 0 0 -1.570796 -3.141592 1.570796 /kinect_link /kinect2_link 100"/>
+  -->
+
+  <node pkg="tf" type="static_transform_publisher" name="kinect2_link_broadcaster" args="0 0 0 0 0 0 /kinect_link /kinect2_link 30"/>
+
+</launch>
+
