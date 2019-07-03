@@ -2,8 +2,13 @@
 - MoveIt package for HRVL GBot
 - Default launch file: hrvl_gbot_moveit_current.launch
 - Control groups: 
-  - 
-
+![image](https://user-images.githubusercontent.com/29231446/60605961-69421e80-9df5-11e9-9b30-b2fb330254cf.png)
+  - arm_short/arm_long/arm_long_with_torso
+    - arm_short: human-like motion generation & HRI researches
+    - arm_long: maximum reach
+    - arm_long_with_torso: for human-like torso motion generation
+  - gripper/pan_tilt/pan_tilt_kinect
+    
 
 
 # Maintainer
