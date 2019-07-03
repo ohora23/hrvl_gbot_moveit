@@ -8,7 +8,8 @@
     - arm_long: maximum reach
     - arm_long_with_torso: for human-like torso motion generation
   - gripper/pan_tilt/pan_tilt_kinect
-    
+  
+![image](https://user-images.githubusercontent.com/29231446/60606651-b377cf80-9df6-11e9-8334-2ce2656a6621.png)    
 
 
 # Maintainer
