@@ -1,0 +1,499 @@
+<?xml version="1.0" ?>
+<robot name="hrvl_gbot">
+    <material name="orange">
+        <color rgba="0.57 0.17 0.0 1.0" />
+    </material>
+    <material name="white">
+        <color rgba="0.8 0.8 0.8 1.0" />
+    </material>
+    <material name="whiteT">
+        <color rgba="0.8 0.8 0.8 0.5" />
+    </material>
+    <material name="steel">
+        <color rgba="0.75 0.75 0.75 0.30" />
+    </material>
+    <material name="gray">
+        <color rgba="0.2 0.2 0.2 0.9" />
+    </material>
+    <material name="black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <link name="base_footprint" />
+    <link name="wheel1">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/MPO-500-WHEEL.dae" scale="-0.0006 0.0005 0.0006" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        
+	<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wheel1_joint" type="continuous">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0.20 0.225 -0.02" />
+        <parent link="base_footprint" />
+        <child link="wheel1" />
+    </joint>
+    <link name="wheel2">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/MPO-500-WHEEL.dae" scale="0.0006 0.0005 0.0006" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wheel2_joint" type="continuous">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0.20 -0.225 -0.02" />
+        <parent link="base_footprint" />
+        <child link="wheel2" />
+    </joint>
+    <link name="wheel3">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/MPO-500-WHEEL.dae" scale="0.0006 0.0005 0.0006" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wheel3_joint" type="continuous">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="-0.20 0.225 -0.02" />
+        <parent link="base_footprint" />
+        <child link="wheel3" />
+    </joint>
+    <link name="wheel4">
+        <visual>
+            <geometry>
+                <!--<cylinder length="0.055" radius=".075" /> -->
+                <mesh filename="package://onine_description/stl/MPO-500-WHEEL.dae" scale="-0.0006 0.0005 0.0006" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 0 0" xyz="0 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wheel4_joint" type="continuous">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="-0.20 -0.225 -0.02" />
+        <parent link="base_footprint" />
+        <child link="wheel4" />
+    </joint>
+    <!-- Sensors -->
+    <link name="rotlidar_link">
+        <visual>
+            <geometry>
+                <!--<cylinder length="0.055" radius=".075" /> -->
+                <mesh filename="package://onine_description/stl/RotatingLidar3_front_only.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 0 0" xyz="-0.0513 -0.0278 -0.033" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="rotlidar_joint" type="revolute">
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" lower="-3.141592" upper="3.141592" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0.3133 0 0.26475" />
+        <parent link="base_footprint" />
+        <child link="rotlidar_link" />
+    </joint>
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/MobilePlatform_BodyOnly.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 -1.570796 3.141592" xyz="-0.2 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="base_link_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <parent link="base_footprint" />
+        <child link="base_link" />
+    </joint>
+    <link name="waist_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/Waist_Final_Simple.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="1.570796 0 1.570796 " xyz="-0.205 0 -0.136" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="waist_link_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="-0.016 0 0.365" />
+        <parent link="base_link" />
+        <child link="waist_link" />
+    </joint>
+    <link name="torso_link_x" />
+    <joint name="torso_joint_x" type="revolute">
+        <axis xyz="1 0 0" />
+        <origin rpy="0 0 0" xyz="-0.016 0 0.730" />
+        <limit effort="1000.0" lower="-0.33" upper="0.33" velocity="1.0" />
+        <parent link="base_footprint" />
+        <child link="torso_link_x" />
+    </joint>
+    <link name="torso_link_y">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/BodyBox.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <!--<origin rpy="0 0 0" xyz="0 0 0.5125" />-->
+            <origin rpy="1.570796 0 1.570796" xyz="0 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="torso_joint_y" type="revolute">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+        <limit effort="1000.0" lower="-0.25" upper="0.3" velocity="1.0" />
+        <parent link="torso_link_x" />
+        <child link="torso_link_y" />
+    </joint>
+    <link name="neck_link_z">
+        <visual>
+            <geometry>
+                <!--> <box size="0.054 0.054 0.138" /> -->
+                <mesh filename="package://onine_description/stl/FRP42-H210_with_axis.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="1.570796 0 1.570796" xyz="-0.021 -0.0415 -0.052" />
+            <!--<origin rpy="1.570796 0 1.570796" xyz="0 0 0" /> -->
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="neck_joint_z" type="revolute">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="0 0 0.370" />
+	<!-- +- 110 degrees -->
+        <limit effort="1000.0" lower="-1.91" upper="1.91" velocity="1.0" />
+        <parent link="torso_link_y" />
+        <child link="neck_link_z" />
+    </joint>
+    <link name="neck_link_y">
+        <visual>
+            <geometry>
+                <!--><box size="0.042 0.042 0.0835" /> -->
+                <mesh filename="package://onine_description/stl/Head_PanTiltModule_Fixed.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <!--<origin rpy="0 0 0" xyz="0 0 0.5125" />-->
+            <origin rpy="1.570796 0 1.570796" xyz="0 0 0" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="neck_joint_y" type="revolute">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+	<!-- -30 ~ 70 degrees -->
+        <limit effort="1000.0" lower="-0.523" upper="1.22" velocity="1.0" />
+        <parent link="neck_link_z" />
+        <child link="neck_link_y" />
+    </joint>
+    <link name="lidar_link" />
+    <joint name="lidar_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="0 0 0.07" />
+        <parent link="neck_link_y" />
+        <child link="lidar_link" />
+    </joint>
+    <link name="kinect_link" />
+    <joint name="kinect_joint" type="fixed">
+        <axis xyz="1 0 0" />
+        <!--origin rpy="0 0 0" xyz="0.095 0 0.155" /-->
+        <origin rpy="0 0 0" xyz="0.095 0 0.155" />
+        <parent link="neck_link_y" />
+        <child link="kinect_link" />
+    </joint>
+    <link name="zed_link" />
+    <joint name="zed_joint" type="fixed">
+        <axis xyz="1 0 0" />
+        <!--origin rpy="0 0 0" xyz="0.1 0 0.200" /-->
+        <origin rpy="0 1.570796 0" xyz="0.1 0 0.200" />
+        <parent link="neck_link_y" />
+        <child link="zed_link" />
+    </joint>
+    <link name="arm_mid_motor_link" />
+    <joint name="arm_mid_motor_joint" type="fixed">
+        <axis xyz="0 0 1" />
+        <origin rpy="0 0 0" xyz="0.1 0 0.273" />
+        <parent link="torso_link_y" />
+        <child link="arm_mid_motor_link" />
+    </joint>
+    <link name="arm_mid_motor_link_z">
+        <visual>
+            <geometry>
+                <!-- <box size="0.054 0.210 0.054" /> -->
+                <mesh filename="package://onine_description/stl/center_rotation_module_fixed.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <!--<origin rpy="0 0 0" xyz="0 0 0.5125" />-->
+            <origin rpy="-1.570796 0 -1.570796" xyz="-0.027 0.21752 0.027" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="arm_mid_motor_joint_z" type="revolute">
+        <axis xyz="0 0 1" />
+        <origin rpy="3.141592 0 0" xyz="0 0 0" />
+        <limit effort="1000.0" lower="-3.141592" upper="0" velocity="1.0" />
+        <parent link="arm_mid_motor_link" />
+        <child link="arm_mid_motor_link_z" />
+    </joint>
+    <link name="arm_shoulder_link_y">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/ShoulderYChild.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="-1.570796 0 0" xyz="-0.054 0 0.054" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="arm_shoulder_joint_y" type="revolute">
+        <axis xyz="0 1 0" />
+        <origin rpy="0 0 0" xyz="0 0.250 0" />
+        <limit effort="1000.0" lower="-3.141592" upper="3.141592" velocity="1.0" />
+        <parent link="arm_mid_motor_link_z" />
+        <child link="arm_shoulder_link_y" />
+    </joint>
+    <link name="arm_shoulder_link_x">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/ArmUpperZ.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <!--<origin rpy="0 0 0" xyz="0 0 0.5125" />-->
+            <origin rpy="3.141592 0 0" xyz="-0.06 0.027 0.0155" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="arm_shoulder_joint_x" type="revolute">
+        <axis xyz="1 0 0" />
+        <origin rpy="3.141592 0 0" xyz="0 0 0" />
+        <limit effort="1000.0" lower="-3.141592" upper="0.52" velocity="1.0" />
+        <parent link="arm_shoulder_link_y" />
+        <child link="arm_shoulder_link_x" />
+    </joint>
+    <link name="arm_shoulder_link_z">
+        <visual>
+            <geometry>
+                <!-- <cylinder length="0.050" radius=".030" /> -->
+                <mesh filename="package://onine_description/stl/ArmElbow.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="1.570796 0 1.570796" xyz="-0.06 -0.027 -0.0235" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="arm_shoulder_joint_z" type="revolute">
+        <axis xyz="0 0 -1" />
+        <!-- upper 120 degree, lower -90 degree -->
+        <limit effort="1000.0" lower="-1.570796" upper="2.094394" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0 0 -0.305" />
+        <parent link="arm_shoulder_link_x" />
+        <child link="arm_shoulder_link_z" />
+    </joint>
+    <link name="arm_lower_link_x">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/ArmLower.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="3.141592 0 -1.570796" xyz="0.051 0.0155 0.025" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="arm_lower_joint_x" type="revolute">
+        <axis xyz="1 0 0" />
+        <origin rpy="0 0 0" xyz="0 0 0" />
+	<!-- Human-like motion??? for this lower should be fixed as 0 --> 
+        <limit effort="1000.0" lower="0" upper="2.10" velocity="1.0" />
+        <parent link="arm_shoulder_link_z" />
+        <child link="arm_lower_link_x" />
+    </joint>
+    <link name="wrist_roll_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/wrist_roll.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="3.141592 0 0" xyz="-0.02 0.017 0.021" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wrist_roll_joint" type="revolute">
+        <axis xyz="0 0 -1" />
+	<!-- plus-minus 120 degree -->
+        <limit effort="1000.0" lower="-2.1" upper="2.1" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0 0 -0.300" />
+        <parent link="arm_lower_link_x" />
+        <child link="wrist_roll_link" />
+    </joint>
+    <link name="wrist_pitch_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://onine_description/stl/wrist_end.STL" scale="0.001 0.001 0.001" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="3.141592 1.570796 3.141592" xyz="-0.02 -0.03525 0.01425" />
+        </visual>
+        
+<inertial>
+            <mass value="0.1" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+
+    </link>
+    <joint name="wrist_pitch_joint" type="revolute">
+        <axis xyz="1 0 0" />
+        <limit effort="1000.0" lower="-0.46" upper="1.570796" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0 0 -0.040" />
+        <parent link="wrist_roll_link" />
+        <child link="wrist_pitch_link" />
+    </joint>
+    <link name="tool_link">
+        <visual>
+            <geometry>
+                <cylinder length="0.0925" radius=".03" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 1.570796 0" xyz="-0.04514 0 0" />
+        </visual>
+    </link>
+    <joint name="tool_link_joint" type="fixed">
+        <axis xyz="1 0 0" />
+        <origin rpy="0 1.570996 0" xyz="0.00 0 -0.1125" />
+        <parent link="wrist_pitch_link" />
+        <child link="tool_link" />
+    </joint>
+    <link name="left_gripper_link">
+        <visual>
+            <geometry>
+                <box size="0.02 0.002 0.055" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 1.570796 0" xyz="-0.0275 0 0" />
+        </visual>
+    </link>
+    <joint name="gripper_joint" type="prismatic">
+        <axis xyz="0 1 0" />
+        <limit effort="1000.0" lower="0.002" upper="0.04" velocity="1.0" />
+        <parent link="tool_link" />
+        <origin rpy="0 0 0" xyz=".0576 0 0.005" />
+        <child link="left_gripper_link" />
+    </joint>
+    <link name="right_gripper_link">
+        <visual>
+            <geometry>
+                <box size="0.02 0.002 0.055" />
+            </geometry>
+            <material name="white" />
+            <origin rpy="0 1.570796 0" xyz="-0.0275 0 0" />
+        </visual>
+    </link>
+    <joint name="sub_gripper_joint" type="prismatic">
+        <axis xyz="0 -1 0" />
+        <mimic joint="gripper_joint" />
+        <limit effort="1000.0" lower="0.002" upper="0.04" velocity="1.0" />
+        <origin rpy="0 0 0" xyz="0.0576 0 0.005" />
+        <parent link="tool_link" />
+        <child link="right_gripper_link" />
+    </joint>
+</robot>
+
+

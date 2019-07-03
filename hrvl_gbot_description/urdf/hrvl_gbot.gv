@@ -1,0 +1,80 @@
+digraph G {
+node [shape=box];
+"base_footprint" [label="base_footprint"];
+"base_link" [label="base_link"];
+"rotlidar_link" [label="rotlidar_link"];
+"torso_link_x" [label="torso_link_x"];
+"torso_link_y" [label="torso_link_y"];
+"arm_mid_motor_link" [label="arm_mid_motor_link"];
+"arm_mid_motor_link_z" [label="arm_mid_motor_link_z"];
+"arm_shoulder_link_y" [label="arm_shoulder_link_y"];
+"arm_shoulder_link_x" [label="arm_shoulder_link_x"];
+"arm_shoulder_link_z" [label="arm_shoulder_link_z"];
+"arm_lower_link_x" [label="arm_lower_link_x"];
+"wrist_roll_link" [label="wrist_roll_link"];
+"wrist_pitch_link" [label="wrist_pitch_link"];
+"tool_link" [label="tool_link"];
+"left_gripper_link" [label="left_gripper_link"];
+"right_gripper_link" [label="right_gripper_link"];
+"neck_link_z" [label="neck_link_z"];
+"neck_link_y" [label="neck_link_y"];
+"kinect_link" [label="kinect_link"];
+"lidar_link" [label="lidar_link"];
+"zed_link" [label="zed_link"];
+"waist_link" [label="waist_link"];
+"wheel1" [label="wheel1"];
+"wheel2" [label="wheel2"];
+"wheel3" [label="wheel3"];
+"wheel4" [label="wheel4"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"base_footprint" -> "base_link_joint" [label="xyz: 0 0 0.1 \nrpy: 0 -0 0"]
+"base_link_joint" -> "base_link"
+"base_link" -> "rotlidar_joint" [label="xyz: 0.3133 0 0.26475 \nrpy: 0 -0 0"]
+"rotlidar_joint" -> "rotlidar_link"
+"base_link" -> "torso_joint_x" [label="xyz: -0.016 0 0.73 \nrpy: 0 -0 0"]
+"torso_joint_x" -> "torso_link_x"
+"torso_link_x" -> "torso_joint_y" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"torso_joint_y" -> "torso_link_y"
+"torso_link_y" -> "arm_mid_motor_joint" [label="xyz: 0.1 0 0.273 \nrpy: 0 -0 0"]
+"arm_mid_motor_joint" -> "arm_mid_motor_link"
+"arm_mid_motor_link" -> "arm_mid_motor_joint_z" [label="xyz: 0 0 0 \nrpy: 3.14159 -0 0"]
+"arm_mid_motor_joint_z" -> "arm_mid_motor_link_z"
+"arm_mid_motor_link_z" -> "arm_shoulder_joint_y" [label="xyz: 0 0.25 0 \nrpy: 0 -0 0"]
+"arm_shoulder_joint_y" -> "arm_shoulder_link_y"
+"arm_shoulder_link_y" -> "arm_shoulder_joint_x" [label="xyz: 0 0 0 \nrpy: 3.14159 -0 0"]
+"arm_shoulder_joint_x" -> "arm_shoulder_link_x"
+"arm_shoulder_link_x" -> "arm_shoulder_joint_z" [label="xyz: 0 0 -0.305 \nrpy: 0 -0 0"]
+"arm_shoulder_joint_z" -> "arm_shoulder_link_z"
+"arm_shoulder_link_z" -> "arm_lower_joint_x" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"arm_lower_joint_x" -> "arm_lower_link_x"
+"arm_lower_link_x" -> "wrist_roll_joint" [label="xyz: 0 0 -0.3 \nrpy: 0 -0 1.5708"]
+"wrist_roll_joint" -> "wrist_roll_link"
+"wrist_roll_link" -> "wrist_pitch_joint" [label="xyz: 0 0 -0.04 \nrpy: 0 -0 0"]
+"wrist_pitch_joint" -> "wrist_pitch_link"
+"wrist_pitch_link" -> "tool_link_joint" [label="xyz: 0 0 -0.1125 \nrpy: 0 1.5708 -0"]
+"tool_link_joint" -> "tool_link"
+"tool_link" -> "gripper_joint" [label="xyz: 0.0576 0 0.005 \nrpy: 0 -0 0"]
+"gripper_joint" -> "left_gripper_link"
+"tool_link" -> "sub_gripper_joint" [label="xyz: 0.0576 0 0.005 \nrpy: 0 -0 0"]
+"sub_gripper_joint" -> "right_gripper_link"
+"torso_link_y" -> "neck_joint_z" [label="xyz: 0 0 0.37 \nrpy: 0 -0 0"]
+"neck_joint_z" -> "neck_link_z"
+"neck_link_z" -> "neck_joint_y" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"neck_joint_y" -> "neck_link_y"
+"neck_link_y" -> "kinect_joint" [label="xyz: 0.095 0 0.155 \nrpy: -1.5708 -0 -1.5708"]
+"kinect_joint" -> "kinect_link"
+"neck_link_y" -> "lidar_joint" [label="xyz: 0 0 0.07 \nrpy: -1.5708 -0 -1.5708"]
+"lidar_joint" -> "lidar_link"
+"neck_link_y" -> "zed_joint" [label="xyz: 0.1 0 0.2 \nrpy: -1.5708 -0 -1.5708"]
+"zed_joint" -> "zed_link"
+"base_link" -> "waist_link_joint" [label="xyz: -0.016 0 0.365 \nrpy: 0 -0 0"]
+"waist_link_joint" -> "waist_link"
+"base_link" -> "wheel1_joint" [label="xyz: 0.2 0.225 -0.02 \nrpy: 0 -0 0"]
+"wheel1_joint" -> "wheel1"
+"base_link" -> "wheel2_joint" [label="xyz: 0.2 -0.225 -0.02 \nrpy: 0 -0 0"]
+"wheel2_joint" -> "wheel2"
+"base_link" -> "wheel3_joint" [label="xyz: -0.2 0.225 -0.02 \nrpy: 0 -0 0"]
+"wheel3_joint" -> "wheel3"
+"base_link" -> "wheel4_joint" [label="xyz: -0.2 -0.225 -0.02 \nrpy: 0 -0 0"]
+"wheel4_joint" -> "wheel4"
+}
